@@ -1,8 +1,8 @@
 [control]
-5.39.10.19       ansible_connection=local
+5.39.10.19       
 
 [network]
-5.39.10.19       ansible_connection=local
+5.39.10.19       
 
 # inner-compute is the groups of compute nodes which do not have
 # external reachability
@@ -11,20 +11,20 @@
 # external-compute is the groups of compute nodes which can reach
 # outside
 [external-compute]
-5.39.10.19       ansible_connection=local
+5.39.10.19       
 
 [compute:children]
 inner-compute
 external-compute
 
 [storage]
-5.39.10.19       ansible_connection=local
+5.39.10.19       
 
 [monitoring]
-5.39.10.19       ansible_connection=local
+5.39.10.19      
 
 [deployment]
-localhost       ansible_connection=local
+5.39.10.19      
 
 # You can explicitly specify which hosts run each project by updating the
 # groups in the sections below. Common services are grouped together.
