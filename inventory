@@ -24,7 +24,7 @@ external-compute
 5.39.10.19      
 
 [deployment]
-5.39.10.19      
+localhost       ansible_connection=local  
 
 # You can explicitly specify which hosts run each project by updating the
 # groups in the sections below. Common services are grouped together.
