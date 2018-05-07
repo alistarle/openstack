@@ -28,7 +28,7 @@ pipeline {
     stage('Test Openstack') {
       steps {
         sshagent (credentials: ['rally']) {
-          sh '''ssh -o StrictHostKeyChecking=no -l rally -p 5000 10.42.66.209 << EOF
+          sh '''ssh -o StrictHostKeyChecking=no -l rally -p 5000 10.42.66.209 /bin/bash << EOF
           rally task start /home/rally/source/samples/tasks/scenarios/keystone/authenticate-user-and-validate-token.json
           REPORT_NAME=report_$(date -d "today" +"%Y%m%d%H%M").html
           rally task report --out=$REPORT_NAME
