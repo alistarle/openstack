@@ -30,7 +30,7 @@ pipeline {
     stage('Test Openstack') {
       steps {
         sshagent (credentials: ['rally']) {
-          steps {
+          step {
             def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
             def date = new Date()
 
