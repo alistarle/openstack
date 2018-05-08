@@ -30,15 +30,17 @@ pipeline {
     stage('Test Openstack') {
       steps {
         sshagent (credentials: ['rally']) {
-          def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
-          def date = new Date()
+          steps {
+            def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
+            def date = new Date()
 
-          def REPORT_NAME="report_"+dateFormat.format(date)+".html"
-          sh '''ssh -o StrictHostKeyChecking=no -l rally -p 5000 10.42.66.209 /bin/bash "
-          rally task start /home/rally/source/samples/tasks/scenarios/keystone/authenticate-user-and-validate-token.json
-          rally task report --out=${REPORT_NAME}
-          /home/rally/.local/bin/aws s3 cp ${REPORT_NAME} s3://openstack-rally-report/reports/
-          "'''
+            def REPORT_NAME="report_"+dateFormat.format(date)+".html"
+            sh '''ssh -o StrictHostKeyChecking=no -l rally -p 5000 10.42.66.209 /bin/bash "
+            rally task start /home/rally/source/samples/tasks/scenarios/keystone/authenticate-user-and-validate-token.json
+            rally task report --out=${REPORT_NAME}
+            /home/rally/.local/bin/aws s3 cp ${REPORT_NAME} s3://openstack-rally-report/reports/
+            "'''
+          }
         }
       }
     }
