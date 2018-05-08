@@ -1,3 +1,4 @@
+rally deployment create --fromenv --name=openstack
 rally task start /home/rally/source/samples/tasks/scenarios/keystone/authenticate-user-and-validate-token.json
 REPORT_NAME=report_$(date -d "today" +"%Y%m%d%H%M").html
 rally task report --out=$REPORT_NAME
