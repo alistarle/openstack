@@ -35,6 +35,7 @@ pipeline {
               def date = new Date()
 
               def REPORT_NAME="report_"+dateFormat.format(date)+".html"
+              print(REPORT_NAME)
               sh '''ssh -o StrictHostKeyChecking=no -l rally -p 5000 10.42.66.209 /bin/bash
               rally task start /home/rally/source/samples/tasks/scenarios/keystone/authenticate-user-and-validate-token.json
               rally task report --out=${REPORT_NAME}
