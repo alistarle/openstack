@@ -9,6 +9,8 @@ neutron_external_interface: "ens224"
 kolla_internal_vip_address: "5.39.10.19"
 enable_haproxy: "no"
 
+nova_compute_virt_type: "qemu"
+
 # You can use this file to override _any_ variable throughout Kolla.
 # Additional options can be found in the
 # 'kolla-ansible/ansible/group_vars/all.yml' file. Default value of all the
@@ -347,7 +349,7 @@ enable_haproxy: "no"
 #nova_backend_ceph: "{{ enable_ceph }}"
 
 # Valid options are [ qemu, kvm, vmware, xenapi ]
-#nova_compute_virt_type: "kvm"
+#nova_compute_virt_type: "qemu"
 
 # The number of fake driver per compute node
 #num_nova_fake_per_node: 5
