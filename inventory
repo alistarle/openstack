@@ -11,7 +11,8 @@
 # external-compute is the groups of compute nodes which can reach
 # outside
 [external-compute]
-5.39.10.19       
+5.39.10.19 
+5.39.10.16       
 
 [compute:children]
 inner-compute
