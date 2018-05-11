@@ -9,4 +9,4 @@ neutron_external_interface: "ens224"
 kolla_internal_vip_address: "5.39.10.19"
 enable_haproxy: "no"
 
-nova_compute_virt_type: "qemu"
+#nova_compute_virt_type: "qemu"
