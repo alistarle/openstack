@@ -4,7 +4,7 @@ pipeline {
     stage('Bootstrap Servers') {
       steps {
         sh '''
-        kolla-ansible -e 'ansible_become=true' -e 'ansible_user=root' -i ./inventory --configdir . --passwords /var/jenkins_home/passwords.yml bootstrap-servers
+        kolla-ansible -v -e 'ansible_become=true' -e 'ansible_user=root' -i ./inventory --configdir . --passwords /var/jenkins_home/passwords.yml bootstrap-servers
         '''
       }
     }
@@ -12,7 +12,7 @@ pipeline {
     stage('Prechecks') {
       steps {
         sh '''
-        kolla-ansible -e 'ansible_become=true' -e 'ansible_user=root' -i ./inventory --configdir . --passwords /var/jenkins_home/passwords.yml prechecks
+        kolla-ansible -v -e 'ansible_become=true' -e 'ansible_user=root' -i ./inventory --configdir . --passwords /var/jenkins_home/passwords.yml prechecks
         '''
       }
     }
@@ -20,7 +20,7 @@ pipeline {
     stage('Deploy Openstack') {
       steps {
         sh '''
-        kolla-ansible -e 'ansible_become=true' -e 'ansible_user=root' -i ./inventory --configdir . --passwords /var/jenkins_home/passwords.yml deploy 
+        kolla-ansible -v -e 'ansible_become=true' -e 'ansible_user=root' -i ./inventory --configdir . --passwords /var/jenkins_home/passwords.yml deploy 
         '''
       }
     }
