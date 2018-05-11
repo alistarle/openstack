@@ -43,6 +43,7 @@ compute
 
 [baremetal:children]
 control
+compute
 
 [grafana:children]
 monitoring
