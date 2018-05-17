@@ -8,5 +8,5 @@ network_interface: "ens192"
 neutron_external_interface: "ens224"
 kolla_internal_vip_address: "5.39.10.19"
 enable_haproxy: "no"
-
+enable_telegraf: "yes"
 #nova_compute_virt_type: "qemu"
