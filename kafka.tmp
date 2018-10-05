@@ -1,0 +1,80 @@
+[[outputs.kafka]]
+  brokers = ["5.39.10.17:9092"]
+  topic = "telegraf"
+  data_format = "json"
+
+docker run -d -p 2181:2181 -p 9092:9092 \
+    --env ADVERTISED_HOST=localhost \
+    --env ADVERTISED_PORT=9092 spotify/kafka
+
+docker run --rm -it -p 8000:8000 \
+        -e "KAFKA_REST_PROXY_URL=http://5.39.10.17:8082" \
+        -e "PROXY=true" \
+        landoop/kafka-topics-ui
+
+docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=`docker-machine ip \`docker-machine active\`` --env ADVERTISED_PORT=9092 spotify/kafka
+export KAFKA=`docker-machine ip \`ddocker-machine active\``:9092
+
+kafka-topics --create \
+    --zookeeper 5.39.10.17:2181 \
+    --replication-factor 1 \
+    --partitions 1 \
+    --topic fluentd
+
+kafka-topics.sh --zookeeper 5.39.10.16:2181 --topic telegraf --describe
+
+kafka-console-producer.sh --broker-list 5.39.10.17:9092 --topic telegraf
+
+kafka-console-consumer.sh --bootstrap-server  5.39.10.17:9092 \
+    --topic fluentd \
+    --from-beginning
+
+<match *.**>
+    @type copy
+    <store>
+        @type kafka_buffered
+        brokers 5.39.10.17:9092
+
+        buffer_type file
+        buffer_path /var/log/td-agent/buffer/td
+        flush_interval 3s
+
+        default_topic fluentd
+
+        output_data_type json
+        compression_codec gzip
+
+        max_send_retries 1
+        required_acks -1
+    </store>
+</match>
+
+horizon
+heat_engine
+heat_api_cfn
+heat_api
+neutron_metadata_agent
+neutron_l3_agent
+neutron_dhcp_agent
+neutron_openvswitch_agent
+neutron_server
+openvswitch_vswitchd
+openvswitch_db
+nova_compute
+nova_novncproxy
+nova_consoleauth
+nova_conductor
+nova_scheduler
+nova_api 
+placement_api
+nova_libvirt
+nova_ssh
+glance_registry
+glance_api
+keystone
+rabbitmq
+mariadb
+cron
+kolla_toolbox
+fluentd
+memcached

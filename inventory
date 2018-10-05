@@ -1,28 +1,17 @@
 [control]
-5.39.10.19       
+5.39.10.16      
 
 [network]
-5.39.10.19       
+5.39.10.16      
 
-# inner-compute is the groups of compute nodes which do not have
-# external reachability
-[inner-compute]
-
-# external-compute is the groups of compute nodes which can reach
-# outside
-[external-compute]
-5.39.10.19 
-#5.39.10.16       
-
-[compute:children]
-inner-compute
-external-compute
+[compute]
+5.39.10.16
 
 [storage]
-5.39.10.19       
+5.39.10.16  
 
 [monitoring]
-5.39.10.19      
+5.39.10.16 
 
 [deployment]
 localhost       ansible_connection=local  
